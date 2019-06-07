@@ -38,17 +38,24 @@ console.log(getTeslaPrices().model.standardRange);
 
 const selectModel = () => {
    const buttonGroup = document.querySelectorAll('.model-selection-btn');
-   buttonGroupEventListener(buttonGroup);
+   const standardBtn = document.getElementById('standardBtn');
+   const awdLongRangeBtn = document.getElementById('awdLongRangeBtn');
+   const awdPerformanceBtn = document.getElementById('awdPerformanceBtn');
+   const modelPrice = document.getElementById('modelPrice');
+   standardBtn.value = getTeslaPrices().model.standardRange;
+   awdLongRangeBtn.value = getTeslaPrices().model.awdLongRange;
+   awdPerformanceBtn.value = getTeslaPrices().model.awdPerformace;
+    //run event listener and value data
+   buttonGroupEventListener(buttonGroup, modelPrice);
 
 }
 
-const buttonGroupEventListener = (groupID) => {
+const buttonGroupEventListener = (groupID, dataID) => {
     const getClickedValue = function() {
-        let attribute = this.textContent;
-            console.log(attribute);
-        };
+        return dataID.textContent = this.value;
+    };
     
-        for (var i = 0; i < groupID.length; i++) {
-            groupID[i].addEventListener('click', getClickedValue, false);
-        }
+    for (var i = 0; i < groupID.length; i++) {
+        groupID[i].addEventListener('click', getClickedValue, false);
+    }
 }
